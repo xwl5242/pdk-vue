@@ -1,0 +1,56 @@
+.tab {
+	bottom: 0;
+	width: 100vw;
+	position: fixed;
+}
+
+.tab-list {
+	float: left;
+	color: #666;
+	height: .6rem;
+	font-size: .18rem;
+	text-align: center;
+}
+
+.tab-list i {
+	font-size: .24rem;
+}
+
+.tab-list i.active {
+	color: rgb(252, 54, 75);
+}
+
+.tab-list p {
+  color: #666;
+	font-size: .12rem;
+}
+
+.tab-list p.active {
+	color: rgb(252, 54, 75);
+}
+
+.tab-list .circle {
+	position: fixed;
+	width: .5rem;
+	height: .5rem;
+	background-color: white;
+	bottom: .2rem;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	border: .06rem solid #fff;
+	border-radius: 50%;
+	background: linear-gradient(to right, rgb(252, 54, 75) 0%, rgb(254, 115, 66) 100%);
+}
+
+.tab-list .circle i {
+	top: .05rem;
+	color: #fff;
+	font-weight: 800;
+	position: relative;
+}
+
+.tab-list .circle p {
+	bottom: -.16rem;
+	position: relative;
+}
