@@ -2,7 +2,7 @@
   <div class="main">
     <div class="user-bg weui-panel">
       <div class="weui-panel__bd">
-        <a href="javascript:" class="weui-media-box weui-media-box_appmsg">
+        <div href="javascript:" class="weui-media-box weui-media-box_appmsg">
           <div class="weui-media-box__hd header-img">
             <img class="weui-media-box__thumb" src="../../static/img/header.jpg">
           </div>
@@ -20,7 +20,7 @@
               <div onclick="copyInviteCode();" class="copy">复制</div>
             </div>
           </div>
-        </a>
+        </div>
       </div>
       <div class="weui-panel__bd">
         <div class="weui-flex activity">
@@ -37,7 +37,7 @@
       </div>
       <div class="weui-panel sales">
         <div class="user-activity weui-panel__bd">
-          <img src="https://img.alicdn.com/imgextra/i1/2053469401/O1CN01n3aGpm2JJi3QIpMPX_!!2053469401.jpg"/>
+          <MSwiper :swiperList="swiperList" />
         </div>
       </div>
       <div class="user-function weui-panel weui-panel_access">
@@ -76,8 +76,27 @@
 </template>
 
 <script>
+import MSwiper from './MSwiper'
 export default {
-  name: "User"
+  name: "User",
+  components: {
+    MSwiper
+  },
+  data () {
+    return {
+      swiperList: [
+        {
+          url: 'https://img.alicdn.com/imgextra/i1/2053469401/O1CN01xKQbdn2JJi3QUZZYI_!!2053469401.jpg'
+        },
+        {
+          url: 'https://img.alicdn.com/imgextra/i1/2053469401/O1CN01QmKHuc2JJi3QzOQ8D_!!2053469401.jpg'
+        },
+        {
+          url: 'https://img.alicdn.com/imgextra/i4/2053469401/O1CN01mOgpvy2JJi3ZdYmyP_!!2053469401.jpg'
+        }
+      ]
+    }
+  }
 }
 </script>
 

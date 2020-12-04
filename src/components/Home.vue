@@ -11,14 +11,14 @@
 </template>
 
 <script>
-import Search from "./Search";
-import MSwiper from "./MSwiper";
-import TaskList from "./TaskList";
+import Search from './Search'
+import MSwiper from './MSwiper'
+import TaskList from './TaskList'
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {Search, MSwiper, TaskList},
-  data() {
+  data () {
     return {
       swiperList: [
         {
