@@ -45,13 +45,14 @@ export default {
     }
   },
   created() {
-    this.showBotTab = this.$router.history.current.path !== '/task';
+    let curPath = this.$router.history.current.path;
+    this.showBotTab = curPath !== '/task' && curPath.indexOf('/taskDetail')<0;
     this.curPath = this.$router.history.current.path;
   },
   watch: {
     $route(to) {
       // 监听当前路由地址，如果不是跳转到发布任务页面，则显示底部tab
-      this.showBotTab = to.path !== '/task';
+      this.showBotTab = to.path !== '/task' && to.path.indexOf('/taskDetail')<0;
       this.curPath = this.$router.history.current.path;
     }
   },

@@ -1,9 +1,9 @@
 <template>
   <div>
     <div v-for="item in taskList" :key="item.id" class="weui-panel__bd main-list">
-      <div class="weui-cells">
+      <div class="weui-cells" @click="showDetail(item.id)">
         <div class="weui-cell">
-          <a href="javascript:" class="weui-media-box weui-media-box_appmsg">
+          <div href="javascript:" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
               <img class="weui-media-box__thumb" src="../../static/img/icons/heart.png">
             </div>
@@ -11,7 +11,7 @@
               <h4 class="weui-media-box__title">{{ item.task_title }}</h4>
               <p class="weui-media-box__desc">剩余数量：<span class="remain">{{ item.task_remain }}</span>/{{ item.task_total }}</p>
             </div>
-          </a>
+          </div>
           <div class="weui-cell__ft gold-coins">+{{item.task_price}}金币</div>
           <span v-show="item.showBadge" class="weui-badge">{{ item.task_badge }}</span>
         </div>
@@ -23,7 +23,17 @@
 <script>
 export default {
   name: "TaskList",
-  props: ['taskList']
+  props: ['taskList'],
+  methods: {
+    showDetail: function(itemId){
+      this.$router.push({
+        name: 'TaskDetail',
+        params: {
+          taskId: itemId
+        }
+      })
+    }
+  }
 }
 </script>
 

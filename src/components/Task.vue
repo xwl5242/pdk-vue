@@ -35,14 +35,14 @@
           <div class="weui-media-box weui-media-box_text">
             <div class="weui-flex">
               <div class="task-type weui-flex__item">
-                <div class="weui-cells_checkbox">
-                  <input type="checkbox" class="weui-check" name="checkbox1" checked="checked">
+                <div class="weui-cells_checkbox" @click="changeType('1')">
+                  <input type="checkbox" class="weui-check" name="checkbox1" :checked="curChangeType=='1'">
                   <i class="weui-icon-checked"></i><span>砍价任务</span>
                 </div>
               </div>
               <div class="task-type weui-flex__item">
-                <div class="weui-cells_checkbox">
-                  <input type="checkbox" class="weui-check" name="checkbox1">
+                <div class="weui-cells_checkbox" @click="changeType('2')">
+                  <input type="checkbox" class="weui-check" name="checkbox1" :checked="curChangeType=='2'">
                   <i class="weui-icon-checked"></i><span>领现金任务</span>
                 </div>
               </div>
@@ -89,7 +89,7 @@
           </div>
           <div class="weui-flex" style="margin-top: .2rem;">
             <div class="weui-flex__item" style="text-align: center;color: #888;">
-              <img style="width: 80%;height: 80%;" src="../../static/img/test.jpeg" />
+              <img style="width: 80%;height: 80%;" :src="validSimpleUrl" />
             </div>
           </div>
         </div>
@@ -111,8 +111,10 @@ export default {
       taskPasswd: '',
       secondStep: false,
       translucent: true,
+      curChangeType: '1',
       dateStr: '选择任务的有效时间',
-      validTimeColor: 'color: #B2B2B2;'
+      validTimeColor: 'color: #B2B2B2;',
+      validSimpleUrl: '../../static/img/test.jpeg'
     }
   },
   methods: {
@@ -125,21 +127,25 @@ export default {
       }
     },
     doPublish: function(){
-      this.$http.post('task/add', {
-        'mem_id': '1',
-        'task_passwd': this.taskPasswd,
-        'task_valid_url': 'http://img.quanchonger.com/XWL.jpeg',
-        'task_title': '测试',
-        'task_type': '0',
-        'task_remain': '100',
-        'task_total': '100',
-        'task_price': '100',
-        'task_valid_time': this.validTime
-      }).then(res=>{
-        if(res.data.data.code===1000){
-          this.$router.push('/')
-        }
-      });
+      if(this.taskPasswd && this.validSimpleUrl){
+        this.$http.post('task/add', {
+          'mem_id': '1',
+          'task_passwd': this.taskPasswd,
+          'task_valid_url': 'http://img.quanchonger.com/XWL.jpeg',
+          'task_title': '测试',
+          'task_type': '0',
+          'task_remain': '100',
+          'task_total': '100',
+          'task_price': '100',
+          'task_valid_time': this.validTime
+        }).then(res=>{
+          if(res.data.data.code===1000){
+            this.$router.push('/')
+          }
+        });
+      }else{
+        showMsg('请填写完整信息!')
+      }
     },
     showDatePicker: function(){
       let _this = this;
@@ -169,6 +175,9 @@ export default {
           showMsg('请填写完整信息!');
         }
       }
+    },
+    changeType: function(type) {
+      this.curChangeType = type;
     }
   }
 }

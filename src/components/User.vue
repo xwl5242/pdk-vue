@@ -2,7 +2,7 @@
   <div class="main">
     <div class="user-bg weui-panel">
       <div class="weui-panel__bd">
-        <div href="javascript:" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box weui-media-box_appmsg">
           <div class="weui-media-box__hd header-img">
             <img class="weui-media-box__thumb" src="../../static/img/header.jpg">
           </div>
