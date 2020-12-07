@@ -16,27 +16,31 @@
       </div>
       <div class="weui-panel__bd">
         <div class="weui-media-box weui-media-box_appmsg">
-          <TaskList :taskList="taskList" />
+          <TaskList :taskList="taskList"/>
         </div>
       </div>
       <div class="opt-step weui-panel weui-panel_access">
         <div class="weui-panel__hd">任务步骤<em style="color: #aaa;">(请参照以下步骤完成任务)</em></div>
         <div class="weui-panel__bd" style="padding: .15rem;">
           <p style="color: #FE3539;">1.点击复制链接/口令按钮，打开拼夕夕去完成。</p>
-          <textarea class="task-passwd">{{curTask['task_passwd']}}</textarea>
+          <textarea class="task-passwd">{{ curTask['task_passwd'] }}</textarea>
           <a href="javascript:" class="weui-btn weui-btn_primary">复制链接/口令</a>
         </div>
-        <div class="weui-panel__bd" style="padding: .15rem;">
+        <div class="weui-panel__bd step2">
           <p style="color: #FE3539;">2.参照示例验证图，按照示例图的提示和要求上传正确的截图。</p>
-          <div class="title weui-flex">
-            <div class="left weui-flex__item"></div>
-            <div class="left weui-flex__item"></div>
+          <div class="weui-flex imgs">
+            <div class="left weui-flex__item">
+              <img :src="validSimpleUrl"/>
+            </div>
+            <div class="left weui-flex__item">
+              <img :src="taskValidUrl"/>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="next-btn">
-      <a @click.prevent="baoming" class="weui-btn_cell weui-btn_cell-default">报名</a>
+      <a @click.prevent="assist" class="weui-btn_cell weui-btn_cell-default">报名</a>
     </div>
   </div>
 </template>
@@ -51,15 +55,26 @@ export default {
     return {
       taskId: '',
       curTask: {},
-      taskList: []
+      taskList: [],
+      taskValidUrl: '',
+      validSimpleUrl: '../../static/img/test.jpeg'
     }
   },
   created () {
     this.taskId = this.$route.params.taskId
     this.$http.get('task/detail/' + this.taskId).then(res => {
-      this.curTask = res.data['task_detail'];
-      this.taskList.push(res.data['task_detail']);
+      this.curTask = res.data['task_detail']
+      this.taskList.push(res.data['task_detail'])
     })
+  },
+  methods: {
+    assist: function() {
+      if(this.taskValidUrl){
+
+      }else{
+        showMsg('请上传验证图！');
+      }
+    }
   }
 }
 </script>
@@ -100,11 +115,13 @@ export default {
   font-size: .14rem;
   margin-right: .1rem;
 }
-.user-bg .opt-step{
+
+.user-bg .opt-step {
   width: 92vw;
   margin: -.1rem auto;
   border-radius: .1rem;
 }
+
 .user-bg .task-passwd {
   width: 88%;
   color: #000;
@@ -122,17 +139,39 @@ export default {
   vertical-align: baseline;
   font-family: Arial, Helvetica, sans-serif, Microsoft YaHei !important;
 }
-.user-bg .opt-step a{
+
+.user-bg .opt-step a {
   width: auto;
   color: #FF334D;
   margin-right: 0;
   margin-top: .1rem;
   background: #F9D5D3;
 }
-.main .next-btn{
+
+.user-bg .opt-step .step2 {
+  padding: .15rem;
+  margin-bottom: .6rem;
+}
+
+.user-bg .opt-step .step2 .imgs {
+  margin-top: .1rem;
+}
+
+.user-bg .opt-step .step2 .imgs div {
+  text-align: center;
+}
+
+.user-bg .opt-step .step2 .imgs div img {
+  width: 80%;
+  height: 80%;
+  background-size: cover;
+}
+
+.main .next-btn {
   padding: 0 .1rem;
 }
-.main .next-btn a{
+
+.main .next-btn a {
   bottom: 0rem;
   position: fixed;
   width: 95vw;
