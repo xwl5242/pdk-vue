@@ -4,7 +4,7 @@
       <div class="weui-panel__bd">
         <div class="weui-media-box weui-media-box_appmsg">
           <div class="weui-media-box__hd header-img">
-            <img class="weui-media-box__thumb" src="../../static/img/header.jpg">
+            <img class="weui-media-box__thumb" src="http://img.quanchonger.com/header.jpg">
           </div>
           <div class="weui-media-box__bd">
             <div class="user-info">

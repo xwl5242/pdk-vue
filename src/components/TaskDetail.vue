@@ -30,10 +30,13 @@
           <p style="color: #FE3539;">2.参照示例验证图，按照示例图的提示和要求上传正确的截图。</p>
           <div class="weui-flex imgs">
             <div class="left weui-flex__item">
-              <img :src="validSimpleUrl"/>
+              <img :src="validSimpleUrl" @click="showGallery(validSimpleUrl)"/>
             </div>
             <div class="left weui-flex__item">
-              <img :src="taskValidUrl"/>
+              <div class="uploader weui-uploader__input-box" v-show="!uploadValidImg">
+                <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple="">
+              </div>
+              <img v-show="uploadValidImg" :src="taskValidUrl" @click="showGallery(taskValidUrl)"/>
             </div>
           </div>
         </div>
@@ -41,6 +44,9 @@
     </div>
     <div class="next-btn">
       <a @click.prevent="assist" class="weui-btn_cell weui-btn_cell-default">报名</a>
+    </div>
+    <div class="weui-gallery" v-show="isShowImg" @click="hideGallery">
+      <span class="weui-gallery__img" :style="'background-image: url('+showImgUrl+');'"></span>
     </div>
   </div>
 </template>
@@ -56,8 +62,11 @@ export default {
       taskId: '',
       curTask: {},
       taskList: [],
+      isShowImg: false,
+      showImgUrl: '',
       taskValidUrl: '',
-      validSimpleUrl: '../../static/img/test.jpeg'
+      uploadValidImg: false,
+      validSimpleUrl: 'http://img.quanchonger.com/simple.jpg'
     }
   },
   created () {
@@ -68,18 +77,30 @@ export default {
     })
   },
   methods: {
-    assist: function() {
-      if(this.taskValidUrl){
+    assist: function () {
+      if (this.taskValidUrl) {
 
-      }else{
-        showMsg('请上传验证图！');
+      } else {
+        showMsg('请上传验证图！')
       }
+    },
+    hideGallery: function () {
+      this.showImgUrl = ''
+      this.isShowImg = false
+    },
+    showGallery: function (url) {
+      this.isShowImg = true
+      this.showImgUrl = url
     }
   }
 }
 </script>
 
 <style scoped>
+.weui-gallery {
+  display: block;
+}
+
 .main {
   font-size: .14rem;
 }
@@ -162,9 +183,17 @@ export default {
 }
 
 .user-bg .opt-step .step2 .imgs div img {
-  width: 80%;
-  height: 80%;
+  width: 95%;
+  height: 95%;
   background-size: cover;
+  border-radius: .1rem;
+}
+
+.user-bg .opt-step .step2 .uploader {
+  width: 95%;
+  height: 95%;
+  margin-left: .05rem;
+  border-radius: .1rem;
 }
 
 .main .next-btn {

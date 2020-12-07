@@ -5,7 +5,7 @@
         <div class="weui-cell">
           <div href="javascript:" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
-              <img class="weui-media-box__thumb" src="../../static/img/icons/heart.png">
+              <img class="weui-media-box__thumb" src="http://img.quanchonger.com/header.jpg">
             </div>
             <div class="weui-media-box__bd" style="width: 37vw;">
               <h4 class="weui-media-box__title">{{ item.task_title }}</h4>

@@ -114,7 +114,7 @@ export default {
       curChangeType: '1',
       dateStr: '选择任务的有效时间',
       validTimeColor: 'color: #B2B2B2;',
-      validSimpleUrl: '../../static/img/test.jpeg'
+      validSimpleUrl: 'http://img.quanchonger.com/simple.jpg'
     }
   },
   methods: {
